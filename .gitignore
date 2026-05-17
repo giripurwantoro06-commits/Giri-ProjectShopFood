@@ -1,0 +1,25 @@
+# Dependensi (jika nantinya Anda menggunakan npm)
+node_modules/
+
+# File Sistem OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# File Konfigurasi Editor/IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# File Log
+*.log
+npm-debug.log*
+
+# File Environment/Sensitif (Sangat penting!)
+.env
+.env.local
+
+# Folder Build (jika menggunakan framework/bundler)
+dist/
+build/
