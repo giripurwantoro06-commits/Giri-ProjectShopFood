@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,24 +10,25 @@
 </head>
 <body class="bg-gray-50 text-gray-800">
     <!-- Navigation -->
-    <nav class="flex justify-between items-center px-8 py-6 bg-white shadow-sm sticky top-0 z-50">
+    <nav id="main-nav" class="flex justify-between items-center px-8 py-6 bg-white shadow-sm sticky top-0 z-50 transition-all duration-300">
         <div class="flex items-center space-x-2">
             <!-- Tombol Hamburger (Mobile Only) -->
-            <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-gray-600 hover:text-orange-500 transition">
+            <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-gray-600 hover:text-orange-600 hover:bg-orange-50 rounded-xl transition-all duration-300" aria-label="Buka Menu">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </button>
-            <div class="text-2xl font-bold text-orange-500">Delicio.</div>
+            <div class="text-2xl font-bold text-orange-500 cursor-default select-none">Delicio.</div>
         </div>
         <ul class="hidden md:flex space-x-8 font-medium md:ml-auto md:mr-12">
-            <li><a href="#" class="hover:text-orange-500 transition">Home</a></li>
-            <li><a href="#menu" class="hover:text-orange-500 transition">Menu</a></li>
-            <li><a href="#contact" class="hover:text-orange-500 transition">Kontak</a></li>
+            <li><a href="#home" class="nav-link nav-link-underline">Home</a></li>
+            <li><a href="#menu" class="nav-link nav-link-underline">Menu</a></li>
+            <li><a href="#testimonials" class="nav-link nav-link-underline">Testimoni</a></li>
+            <li><a href="#contact" class="nav-link nav-link-underline">Kontak</a></li>
         </ul>
         <div class="flex items-center space-x-4">
-            <div onclick="openModal()" class="relative group cursor-pointer transition transform active:scale-95">
-                <button class="p-2 bg-orange-100 rounded-full text-orange-600 pointer-events-none">
+            <div onclick="openModal()" class="relative group cursor-pointer transition transform active:scale-95" role="button" aria-label="Lihat Keranjang">
+                <button class="p-2 bg-orange-100 rounded-full text-orange-600 pointer-events-none group-hover:bg-orange-200 transition-colors duration-300" tabindex="-1">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
@@ -37,21 +38,22 @@
             <div class="hidden lg:block">
                 <p id="cart-total" class="font-bold text-sm">Rp 0</p>
             </div>
-            <button class="hidden sm:block bg-orange-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-orange-600 transition">Login</button>
+            <button class="hidden sm:block bg-orange-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-orange-600 hover:scale-105 transform transition-all duration-300">Login</button>
         </div>
     </nav>
 
     <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 bg-white z-mobile-menu transform -translate-x-full transition-transform duration-300 md:hidden overflow-hidden">
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[60] transform -translate-x-full transition-transform duration-300 md:hidden overflow-hidden">
         <div class="flex flex-col h-full p-8">
             <div class="flex justify-between items-center mb-12">
                 <div class="text-2xl font-bold text-orange-500">Delicio.</div>
-                <button onclick="toggleMobileMenu()" class="text-4xl font-light text-gray-400 hover:text-gray-600">&times;</button>
+                <button onclick="toggleMobileMenu()" class="text-4xl font-light text-gray-400 hover:text-gray-600" aria-label="Tutup Menu">&times;</button>
             </div>
             <nav class="flex flex-col space-y-6 text-xl font-semibold">
-                <a href="#" onclick="toggleMobileMenu()" class="hover:text-orange-500 transition border-b border-gray-100 pb-2">Home</a>
-                <a href="#menu" onclick="toggleMobileMenu()" class="hover:text-orange-500 transition border-b border-gray-100 pb-2">Menu</a>
-                <a href="#contact" onclick="toggleMobileMenu()" class="hover:text-orange-500 transition border-b border-gray-100 pb-2">Kontak</a>
+                <a href="#" onclick="toggleMobileMenu()" class="hover:text-orange-500 hover:pl-2 transition-all duration-300 border-b border-gray-100 pb-2">Home</a>
+                <a href="#menu" onclick="toggleMobileMenu()" class="hover:text-orange-500 hover:pl-2 transition-all duration-300 border-b border-gray-100 pb-2">Menu</a>
+                <a href="#testimonials" onclick="toggleMobileMenu()" class="hover:text-orange-500 hover:pl-2 transition-all duration-300 border-b border-gray-100 pb-2">Testimoni</a>
+                <a href="#contact" onclick="toggleMobileMenu()" class="hover:text-orange-500 hover:pl-2 transition-all duration-300 border-b border-gray-100 pb-2">Kontak</a>
             </nav>
             <div class="mt-auto">
                 <button class="w-full bg-orange-500 text-white py-4 rounded-2xl font-bold shadow-lg shadow-orange-100">Login</button>
@@ -60,7 +62,7 @@
     </div>
 
     <!-- Hero Section -->
-    <header class="container mx-auto px-8 py-16 flex flex-col md:flex-row items-center">
+    <header id="home" class="container mx-auto px-8 py-16 flex flex-col md:flex-row items-center reveal">
         <div class="md:w-1/2 space-y-6">
             <h1 class="text-5xl md:text-6xl font-bold leading-tight">
                 Lezatnya Makanan <span class="text-orange-500">Sehat</span> Sampai ke Rumah.
@@ -70,7 +72,12 @@
             </p>
             <div class="flex space-x-4">
                 <a href="#menu" class="bg-orange-500 text-white px-8 py-3 rounded-full font-bold shadow-lg shadow-orange-200 hover:scale-105 transition transform">Pesan Sekarang</a>
-                <button class="border-2 border-gray-200 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition">Lihat Video</button>
+                <button onclick="openVideoModal()" class="border-2 border-gray-200 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition flex items-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-orange-500" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                    </svg>
+                    <span>Lihat Video</span>
+                </button>
             </div>
         </div>
         <div class="md:w-1/2 mt-12 md:mt-0">
@@ -79,7 +86,7 @@
     </header>
 
     <!-- Featured Menu -->
-    <section id="menu" class="container mx-auto px-8 py-20">
+    <section id="menu" class="container mx-auto px-8 py-20 scroll-mt-24 reveal">
         <div class="text-center mb-16">
             <h2 class="text-3xl font-bold italic text-orange-500">Menu Populer</h2>
             <p class="text-4xl font-bold mt-2">Pilihan Terbaik Minggu Ini</p>
@@ -88,7 +95,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
             <!-- Card 1 -->
             <div class="bg-white p-4 rounded-3xl shadow-md hover:shadow-xl transition group">
-                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Salad" class="w-full h-48 object-cover rounded-2xl mb-4 group-hover:scale-105 transition">
+                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Salad Sayur Segar" class="w-full h-48 object-cover rounded-2xl mb-4 group-hover:scale-105 transition" loading="lazy">
                 <div class="px-2">
                     <h3 class="text-xl font-bold">Salad Sayur Segar</h3>
                     <p class="text-gray-500 text-sm mt-1">Mixed greens, avocado, and lime.</p>
@@ -101,7 +108,7 @@
 
             <!-- Card 2 -->
             <div class="bg-white p-4 rounded-3xl shadow-md hover:shadow-xl transition group">
-                <img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Pancake Madu Lezat" class="w-full h-48 object-cover rounded-2xl mb-4 group-hover:scale-105 transition">
+                <img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Pancake Madu Lezat" class="w-full h-48 object-cover rounded-2xl mb-4 group-hover:scale-105 transition" loading="lazy">
                 <div class="px-2">
                     <h3 class="text-xl font-bold">Pancake Madu</h3>
                     <p class="text-gray-500 text-sm mt-1">Fluffy pancakes with organic honey.</p>
@@ -114,7 +121,7 @@
 
             <!-- Card 3 -->
             <div class="bg-white p-4 rounded-3xl shadow-md hover:shadow-xl transition group">
-                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Pizza" class="w-full h-48 object-cover rounded-2xl mb-4 group-hover:scale-105 transition">
+                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Pizza Margherita" class="w-full h-48 object-cover rounded-2xl mb-4 group-hover:scale-105 transition" loading="lazy">
                 <div class="px-2">
                     <h3 class="text-xl font-bold">Pizza Margherita</h3>
                     <p class="text-gray-500 text-sm mt-1">Classic pizza with fresh mozzarella.</p>
@@ -127,8 +134,77 @@
         </div>
     </section>
 
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="bg-orange-50 py-20 scroll-mt-24 reveal">
+        <div class="container mx-auto px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold italic text-orange-500">Testimoni</h2>
+                <p class="text-4xl font-bold mt-2">Apa Kata Pelanggan Kami</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300">
+                    <div class="flex text-orange-400 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"Katering terbaik yang pernah saya coba! Menu Salad Sayurnya sangat fresh dan bumbunya pas banget. Langganan tiap minggu!"</p>
+                    <div class="flex items-center space-x-3">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?fit=crop&w=100&h=100&q=80" alt="Sarah Amelia" class="w-10 h-10 rounded-full object-cover">
+                        <div>
+                            <p class="font-bold text-sm">Sarah Amelia</p>
+                            <p class="text-xs text-gray-500">Ibu Rumah Tangga</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300">
+                    <div class="flex text-orange-400 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"Proses pemesanan sangat mudah dan pengirimannya tepat waktu. Makanannya masih hangat pas sampai. Sangat recommended!"</p>
+                    <div class="items-center space-x-3 flex">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=100&h=100&q=80" alt="Budi Santoso" class="w-10 h-10 rounded-full object-cover">
+                        <div>
+                            <p class="font-bold text-sm">Budi Santoso</p>
+                            <p class="text-xs text-gray-500">Karyawan Swasta</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300">
+                    <div class="flex text-orange-400 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"Senang sekali ada katering sehat yang harganya terjangkau. Rasanya bintang lima tapi tetap ramah di kantong!"</p>
+                    <div class="flex items-center space-x-3">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?fit=crop&w=100&h=100&q=80" alt="Linda Wijaya" class="w-10 h-10 rounded-full object-cover">
+                        <div>
+                            <p class="font-bold text-sm">Linda Wijaya</p>
+                            <p class="text-xs text-gray-500">Pecinta Kuliner Sehat</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact & Location Section -->
-    <section id="contact" class="container mx-auto px-8 py-20">
+    <section id="contact" class="container mx-auto px-8 py-20 scroll-mt-24 reveal">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
             <!-- Contact Form -->
             <div class="bg-white p-8 rounded-3xl shadow-lg">
@@ -171,12 +247,31 @@
         </div>
     </section>
 
-    <footer class="bg-gray-900 text-white py-12 text-center">
-        <p class="opacity-50">&copy; 2024 Delicio Food. Semua Hak Dilindungi.</p>
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center border-b border-gray-800 pb-8 mb-8">
+                <div class="text-3xl font-bold text-orange-500 mb-4 md:mb-0">Delicio.</div>
+                <div class="flex space-x-4 mb-4 md:mb-0">
+                    <a href="#" class="w-10 h-10 bg-gray-800 text-gray-400 rounded-xl flex items-center justify-center hover:bg-orange-500 hover:text-white transition-all duration-300 group" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:scale-110 transition-transform"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gray-800 text-gray-400 rounded-xl flex items-center justify-center hover:bg-orange-500 hover:text-white transition-all duration-300 group" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:scale-110 transition-transform"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gray-800 text-gray-400 rounded-xl flex items-center justify-center hover:bg-orange-500 hover:text-white transition-all duration-300 group" aria-label="WhatsApp">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:scale-110 transition-transform"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500 font-medium">
+                <p class="text-center md:text-left">&copy; <span id="current-year"></span> Delicio Food. Semua Hak Dilindungi.</p>
+                <p class="mt-4 md:mt-0 text-center md:text-right">Dibuat dengan <span class="text-red-500">❤️</span> untuk UMKM Indonesia</p>
+            </div>
+        </div>
     </footer>
 
     <!-- Notification Toast -->
-    <div id="notification" class="fixed bottom-8 right-8 bg-green-600 text-white px-6 py-3 rounded-2xl shadow-2xl transform translate-y-32 opacity-0 transition-all duration-500 z-modal flex items-center space-x-2 pointer-events-none">
+    <div id="notification" class="fixed bottom-8 right-8 bg-green-600 text-white px-6 py-3 rounded-2xl shadow-2xl transform translate-y-32 opacity-0 transition-all duration-500 z-[100] flex items-center space-x-2 pointer-events-none">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
         </svg>
@@ -184,7 +279,7 @@
     </div>
 
     <!-- Cart Modal -->
-    <div id="cart-modal" class="fixed inset-0 bg-black/50 z-modal hidden items-center justify-center p-4 backdrop-blur-sm">
+    <div id="cart-modal" class="fixed inset-0 bg-black/50 z-[70] hidden items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden transform transition-all">
             <div class="p-6 border-b flex justify-between items-center">
                 <h3 class="text-2xl font-bold">Keranjang Belanja</h3>
@@ -193,6 +288,14 @@
             <div id="cart-items-list" class="p-6 max-h-96 overflow-y-auto space-y-4">
                 <!-- Items will be injected here -->
                 <p class="text-center text-gray-500 py-8">Keranjang Anda masih kosong.</p>
+            </div>
+            <!-- Promo Code Section -->
+            <div class="px-6 py-4 border-t bg-white">
+                <div class="flex space-x-2">
+                    <input type="text" id="promo-input" placeholder="Kode Promo (ex: HEMAT20)" class="flex-1 px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm">
+                    <button onclick="applyPromoCode()" class="bg-gray-800 text-white px-4 py-2 rounded-xl text-sm font-bold hover:bg-orange-500 transition">Pakai</button>
+                </div>
+                <p id="promo-message" class="text-xs mt-2 hidden"></p>
             </div>
             <div class="p-6 bg-gray-50 border-t">
                 <div class="flex justify-between items-center mb-6">
@@ -203,6 +306,23 @@
             </div>
         </div>
     </div>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="fixed inset-0 bg-black/90 z-[110] hidden items-center justify-center p-4 backdrop-blur-md">
+        <div class="relative w-full max-w-4xl aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl">
+            <button onclick="closeVideoModal()" class="absolute top-4 right-4 text-white hover:text-orange-500 z-10 bg-black/50 w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+                <span class="text-2xl">&times;</span>
+            </button>
+            <video id="video-player" class="w-full h-full" controls></video>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 left-8 bg-orange-500 text-white p-3 rounded-full shadow-2xl opacity-0 translate-y-20 transition-all duration-500 z-[100] hover:bg-orange-600 focus:outline-none pointer-events-none" aria-label="Kembali ke atas">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
 
     <script src="script.js"></script>
 </body>

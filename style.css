@@ -25,3 +25,49 @@ body {
 .z-modal {
     z-index: 100;
 }
+
+/* Underline animation for active nav links */
+.nav-link-underline {
+    position: relative;
+    /* Ensure the link itself is a block or inline-block for pseudo-element positioning */
+    /* display: inline-block; (already handled by Tailwind's inline-block class) */
+}
+
+.nav-link {
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+}
+
+.nav-link-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; /* Jarak underline dari teks */
+    left: 50%; /* Mulai dari tengah */
+    width: 100%; /* Lebar penuh */
+    height: 2px;
+    background-color: #f97316; /* Warna orange-500 Tailwind */
+    transform: translateX(-50%) scaleX(0); /* Tengah dan skala 0 (tidak terlihat) */
+    transition: transform 0.3s ease-out; /* Animasi halus */
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #f97316; /* orange-500 */
+    transform: scale(1.1);
+}
+
+.nav-link.active::after {
+    transform: translateX(-50%) scaleX(1); /* Skala 1 (terlihat penuh) */
+}
+
+/* Fade-in Scroll Animation */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.reveal-active {
+    opacity: 1;
+    transform: translateY(0);
+}
